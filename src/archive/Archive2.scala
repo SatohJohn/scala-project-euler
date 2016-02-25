@@ -1,13 +1,20 @@
 package archive
 
+import scala.collection.mutable.ListBuffer
+
 /**
   * Created by satohjohn on 2016/02/18.
   */
 object Archive2 {
   def main(args: Array[String]): Unit = {
+    var list = List(2L, 1L)
     //フィボナッチ数列を作成する
-    val result = Array(1,2).reduce((a,b)=> a+b)
-    println(result)
-    //
+    println (addList(list).filter(_ % 2 == 0).reverse.sum)
+  }
+  def addList(l: List[Long]): List[Long] = {
+    l.take(2).sum match {
+      case x:Long if x > 4000000 => l
+      case x:Long => addList(x :: l)
+    }
   }
 }
