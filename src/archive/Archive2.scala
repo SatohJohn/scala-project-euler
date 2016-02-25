@@ -1,7 +1,5 @@
 package archive
 
-import scala.collection.mutable.ListBuffer
-
 /**
   * Created by satohjohn on 2016/02/18.
   */
@@ -13,8 +11,8 @@ object Archive2 {
   }
   def addList(l: List[Long]): List[Long] = {
     l.take(2).sum match {
-      case x:Long if x > 4000000 => l
-      case x:Long => addList(x :: l)
+      case x if x > 4000000 => l
+      case x => addList(x :: l)
     }
   }
 }
