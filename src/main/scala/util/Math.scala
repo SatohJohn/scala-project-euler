@@ -27,16 +27,21 @@ object Math {
 
   def primes(limit: => Int): List[Long] = {
     var result: ListBuffer[Long] = new ListBuffer[Long]
-    var i = start
+    result += 2
+    var i = 3
     while (i < Long.MaxValue) {
       if (result.size >= limit) {
         return result.toList
       }
-      if (!result.exists(i % _ == 0)) {
+      if (result.forall(i % _ != 0)) {
         result += i
       }
-      i = i+1
+      i = i+2
     }
     result.toList
+  }
+
+  def fastPrimes(limit: => Long): List[Long] = {
+    (2L to limit).par.filterNot(i => (2L until math.sqrt(i).toLong).exists(i%_ == 0)).toList
   }
 }
