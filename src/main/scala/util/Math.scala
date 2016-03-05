@@ -1,5 +1,7 @@
 package util
 
+import scala.collection.mutable.ListBuffer
+
 /**
   * Created by john on 2016/03/05.
   */
@@ -21,5 +23,20 @@ object Math {
       }
     }
     result.reverse
+  }
+
+  def primes(limit: => Int): List[Long] = {
+    var result: ListBuffer[Long] = new ListBuffer[Long]
+    var i = start
+    while (i < Long.MaxValue) {
+      if (result.size >= limit) {
+        return result.toList
+      }
+      if (!result.exists(i % _ == 0)) {
+        result += i
+      }
+      i = i+1
+    }
+    result.toList
   }
 }
