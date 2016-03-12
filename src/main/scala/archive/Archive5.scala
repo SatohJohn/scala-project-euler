@@ -9,7 +9,7 @@ object Archive5 {
     // 1から20で割れる最小値
     // 各数の素因数分解したものを取得して、それらをあわせる
     // filterNotだと一つあったらダメなので、diffを使ってやる
-    val result = (1 to 20).map(Math.divide(_)).reduceLeft((collectList, list) => collectList:::list.diff(collectList)).product
+    val result = (1 to 20).map(Math.primeFactor(_)).reduceLeft((collectList, list) => collectList:::list.diff(collectList)).product
     println(result)
   }
 }

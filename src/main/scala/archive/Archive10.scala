@@ -6,6 +6,6 @@ package archive
 object Archive10 {
   def main(args: Array[String]): Unit = {
 //    println(util.Math.primesUntil(2000000L).sum)
-    println(util.Math.fastPrimes(2000000L).sum)
+    println(util.Math.primes(2000000L).sum)
   }
 }

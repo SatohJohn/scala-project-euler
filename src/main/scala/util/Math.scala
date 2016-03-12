@@ -9,8 +9,13 @@ object Math {
   val start: Long = 2L
   val inclement: Long = 1L
 
+  /**
+    * {@code d}の素因数を取得する
+    * @param d
+    * @return
+    */
   // => とかくと名前渡しになって、関数、または、値を渡せる
-  def divide(d: => Long): List[Long] = {
+  def primeFactor(d: => Long): List[Long] = {
     var result: List[Long] = List.empty
     var i = start
     var s = d
@@ -25,7 +30,12 @@ object Math {
     result.reverse
   }
 
-  def primes(limit: => Int): List[Long] = {
+  /**
+    * {@code limit}までに存在する素数を計算する
+    * @param limit
+    * @return
+    */
+  def primes(limit: Int): List[Long] = {
     var result: ListBuffer[Long] = new ListBuffer[Long]
     result += 2
     var i = 3
@@ -41,7 +51,12 @@ object Math {
     result.toList
   }
 
-  def fastPrimes(limit: => Long): List[Long] = {
+  /**
+    * {@code limit}までに存在する素数を取得する
+    * @param limit
+    * @return
+    */
+  def primes(limit: Long): List[Long] = {
     (2L to limit).par.filterNot(i => (2L until math.sqrt(i).toLong).exists(i%_ == 0)).toList
   }
 }
