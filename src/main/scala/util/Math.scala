@@ -14,19 +14,20 @@ object Math {
     * @param d
     * @return
     */
-  // => とかくと名前渡しになって、関数、または、値を渡せる
   def primeFactor(d: => Long): List[Long] = {
     var result: List[Long] = List.empty
-    var i = start
     var s = d
-    while (i <= s) {
-      if (s % i == 0L) {
-        s = s/i
-        result = i::result
-      } else {
-        i = i+inclement
-      }
+    def res(i:Long) = {
+      s = s/i
+      result = i::result
+      i
     }
+    def loop(l: Long): Long =
+      if (l <= s && s%l == 0) loop(res(l))
+      else if (l<=s) loop(l+inclement)
+      else 0
+
+    loop(start)
     result.reverse
   }
 
@@ -58,5 +59,27 @@ object Math {
     */
   def primes(limit: Long): List[Long] = {
     (2L to limit).par.filterNot(i => (2L until math.sqrt(i).toLong).exists(i%_ == 0)).toList
+  }
+
+  def tri(a: Long): Long = {
+    (1L to a).sum
+  }
+
+  /**
+    *
+    * @param d
+    * @return
+    */
+  def divisor(d: Long): List[Long] = {
+    var i = 1L
+    var result: ListBuffer[Long] = new ListBuffer[Long]
+    while (i < math.floor(math.sqrt(d))) {
+      if (d%i == 0) {
+        result += i
+        result += d/i
+      }
+      i += 1L
+    }
+    result.toList.sorted
   }
 }
